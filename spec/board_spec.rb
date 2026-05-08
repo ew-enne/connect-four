@@ -42,6 +42,20 @@ describe Board do
         expect(cell_content).to eq('X')
       end
     end
+
+    context 'when two pieces are added in two different columns' do
+      subject(:board_two_pieces) { described_class.new(6, 7) }
+
+      it 'checks if piece 1 with marker O lands in column 2 in row 2 and  piece 2 with marker X lands in column 5 and row 0' do
+        2.times { board_two_pieces.add_piece(2, 'X') }
+        board_two_pieces.add_piece(2, 'O')
+        board_two_pieces.add_piece(5, 'X')
+        cell_content_piece_1 = board_two_pieces[2, 2]
+        cell_content_piece_2 = board_two_pieces[0, 5]
+        expect(cell_content_piece_1).to eq('O')
+        expect(cell_content_piece_2).to eq('X')
+      end
+    end
   end
 
 end
