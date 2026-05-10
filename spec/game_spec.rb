@@ -27,4 +27,14 @@ describe Game do
     end
   end
 
+  describe 'when player chooses invalid column' do
+    
+    subject(:game_invalid_column) { described_class.new }
+
+    it 'returns false when player chooses column 100' do
+      invalid_choice = game_invalid_column.play(100)
+      expect(invalid_choice).to eq(false)
+    end
+  end
+
 end
