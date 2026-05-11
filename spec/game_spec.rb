@@ -37,4 +37,39 @@ describe Game do
     end
   end
 
+  describe '#check_win' do
+
+    context 'when there is a vertical win' do
+    
+      subject(:game_vertical_win) { described_class.new }
+
+      it 'returns the winner when 4 pieces are stacked vertically' do
+        game_vertical_win.play(4)
+        game_vertical_win.play(2)
+        game_vertical_win.play(4)
+        game_vertical_win.play(2)
+        game_vertical_win.play(4)
+        game_vertical_win.play(2)
+        game_vertical_win.play(4)
+        game_vertical_win.play(1)
+        winner = game_vertical_win.check_win
+        expect(winner).to eq('X')
+      end
+    end
+
+    context 'when there is no vertical win' do
+      
+      subject(:game_no_vertical_win) { described_class.new }
+
+        it 'returns nil when there are no 4 pieces stacked vertically' do
+          game_no_vertical_win.play(4)
+          game_no_vertical_win.play(2)
+          game_no_vertical_win.play(4)
+          game_no_vertical_win.play(2)
+          winner = game_no_vertical_win.check_win
+          expect(winner).to be nil
+        end
+    end
+  end
+
 end

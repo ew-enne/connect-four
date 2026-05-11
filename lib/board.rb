@@ -17,6 +17,10 @@ class Board
     true
   end
 
+  def cells
+    @board
+  end
+
   # helper method for testing purposes
   def [](row, column)
     @board[column][row]
