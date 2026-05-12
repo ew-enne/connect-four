@@ -21,6 +21,11 @@ class Board
     @board
   end
 
+  # helper method to check if a cell is inside the board's dimensions
+  def cell_exists?(row, column)
+    row >= 0 && row < @rows && column >= 0 && column < @columns
+  end
+
   # helper method for testing purposes
   def [](row, column)
     @board[column][row]

@@ -98,6 +98,27 @@ describe Game do
       end
     end
 
+    context 'when there is a diagonal win' do
+      
+      subject(:game_diagonal) { described_class.new }
+
+      it 'returns the winner when 4 pieces are in a diagonal' do
+        game_diagonal.play(0) # 'X' plays
+        game_diagonal.play(1) # 'O' plays
+        game_diagonal.play(1) # 'X' plays
+        game_diagonal.play(2) # 'O' plays
+        game_diagonal.play(2) # 'X' plays
+        game_diagonal.play(3) # 'O' plays
+        game_diagonal.play(2) # 'X' plays
+        game_diagonal.play(3) # 'O' plays
+        game_diagonal.play(4) # 'X' plays
+        game_diagonal.play(3) # 'O' plays
+        game_diagonal.play(3) # 'X' plays
+        winner = game_diagonal.check_win
+        expect(winner).to eq('X')
+      end
+    end
+
   end
 
 end

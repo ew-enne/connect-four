@@ -19,7 +19,7 @@ class Game
   end
 
   def check_win
-    check_vertical || check_horizontal
+    check_vertical || check_horizontal || check_diagonal
   end
 
   # helper methods for #check_win
@@ -44,6 +44,11 @@ class Game
       end
     end
     nil
+  end
+
+  # helper method for #check_win
+  def check_diagonal
+    
   end
   
 end
