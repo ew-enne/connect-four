@@ -70,6 +70,34 @@ describe Game do
           expect(winner).to be nil
         end
     end
+
+    context 'when there is a horizontal win' do
+      
+      subject(:game_horizontal_win) { described_class.new }
+
+      it 'returns the winner when 4 pieces are stacked horizontally' do
+        game_horizontal_win.play(0) # 'X' plays
+        game_horizontal_win.play(1) # 'O' plays
+        game_horizontal_win.play(2) # 'X' plays
+        game_horizontal_win.play(3) # 'O' plays
+        game_horizontal_win.play(4) # 'X' plays
+        game_horizontal_win.play(5) # 'O' plays
+        game_horizontal_win.play(6) # 'X' plays
+        game_horizontal_win.play(7) # 'O' plays
+        game_horizontal_win.play(0) # 'X' plays
+        game_horizontal_win.play(0) # 'O' plays
+        game_horizontal_win.play(2) # 'X' plays
+        game_horizontal_win.play(1) # 'O' plays
+        game_horizontal_win.play(3) # 'X' plays
+        game_horizontal_win.play(2) # 'O' plays
+        game_horizontal_win.play(4) # 'X' plays
+        game_horizontal_win.play(3) # 'O' plays
+        game_horizontal_win.play(5) # 'X' plays
+        winner = game_horizontal_win.check_win
+        expect(winner).to eq('X')
+      end
+    end
+
   end
 
 end

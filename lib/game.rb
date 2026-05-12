@@ -19,18 +19,31 @@ class Game
   end
 
   def check_win
-    if check_vertical
-      @current_player
-    end
+    check_vertical || check_horizontal
   end
 
   # helper methods for #check_win
   def check_vertical
-      @board.cells.any? do |column|
-        column.each_cons(4).any? do |four_cells|
-          four_cells.uniq.size == 1 && ['X', 'O'].include?(four_cells.first)
+    @board.cells.any? do |column|
+      column.each_cons(4).any? do |four_cells|
+        if four_cells.uniq.size == 1 && ['X', 'O'].include?(four_cells.first)
+          return four_cells.first
         end
       end
+    end
+    nil    
+  end
+
+  # helper method for #check_win
+  def check_horizontal
+    @board.cells.transpose.any? do |column|
+      column.each_cons(4).any? do |four_cells|
+        if four_cells.uniq.size == 1 && ['X', 'O'].include?(four_cells.first)
+          return four_cells.first
+        end
+      end
+    end
+    nil
   end
   
 end
